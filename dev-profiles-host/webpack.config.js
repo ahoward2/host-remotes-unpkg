@@ -67,15 +67,8 @@ module.exports = {
     // If you're only making use of a dynamic remote container,
     // you actually wouldn't NEED the module federation plugin.
     new ModuleFederationPlugin({
-      name: "DevProfileHost",
-      filename: "remoteEntry.js",
+      name: "dev-profiles-host",
       remotes,
-      // remotes: {
-      //   DevProfileOne:
-      //     "DevProfileOne@http://localhost:3003/browser/remote-entry.js",
-      //   DevProfileTwo:
-      //     "DevProfileTwo@http://localhost:3001/browser/remote-entry.js",
-      // },
       exposes: {},
       shared: {
         ...deps,
