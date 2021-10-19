@@ -8,6 +8,15 @@ const federatedRemotes = {
   "dev-profile-two": "^1.0.0",
 };
 
+const localRemotes = {
+  "dev-profile-one": `${camelCase(
+    "dev-profile-one"
+  )}@http://localhost:3003/browser/remote-entry.js`,
+  "dev-profile-two": `${camelCase(
+    "dev-profile-two"
+  )}@http://localhost:3001/browser/remote-entry.js`,
+};
+
 const deps = {
   ...federatedRemotes,
   ...require("./package.json").dependencies,
@@ -68,7 +77,7 @@ module.exports = {
     // you actually wouldn't NEED the module federation plugin.
     new ModuleFederationPlugin({
       name: "dev-profiles-host",
-      remotes,
+      remotes: process.env.LOCAL_MODULES === "true" ? localRemotes : remotes,
       exposes: {},
       shared: {
         ...deps,
